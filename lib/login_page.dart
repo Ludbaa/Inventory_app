@@ -1,5 +1,7 @@
+import 'package:app_inventaris/user_page.dart';
 import 'package:flutter/material.dart';
 import 'admin_page.dart'; // Import the AdminPage
+import 'user_page.dart'; // Import the AdminPage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,6 +38,14 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         _showErrorToast('Email atau password salah');
       }
+    }
+    if (email == 'user@example.com' && password == 'user123') {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => UserPage()),
+      );
+    } else {
+      _showErrorToast('Email atau password salah');
     }
   }
 
