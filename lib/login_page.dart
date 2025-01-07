@@ -1,7 +1,7 @@
 import 'package:app_inventaris/user_page.dart';
 import 'package:flutter/material.dart';
 import 'admin_page.dart'; // Import the AdminPage
-import 'user_page.dart'; // Import the AdminPage
+import 'user_page.dart'; // Import the UserPage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,19 +33,16 @@ class _LoginPageState extends State<LoginPage> {
       if (email == 'admin@example.com' && password == 'admin123') {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => AdminPage()),
+          MaterialPageRoute(builder: (context) => const AdminPage()),
+        );
+      } else if (email == 'user@example.com' && password == 'user123') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => UserPage()),
         );
       } else {
         _showErrorToast('Email atau password salah');
       }
-    }
-    if (email == 'user@example.com' && password == 'user123') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => UserPage()),
-      );
-    } else {
-      _showErrorToast('Email atau password salah');
     }
   }
 
@@ -97,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       validator: (value) {
-        if (value!.isEmpty) {
+        if (value == null || value.isEmpty) {
           return 'Masukkan email';
         }
         return null;
@@ -123,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       validator: (value) {
-        if (value!.isEmpty) {
+        if (value == null || value.isEmpty) {
           return 'Masukkan password';
         }
         return null;
