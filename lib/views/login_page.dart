@@ -1,7 +1,5 @@
-import 'package:app_inventaris/user_page.dart';
-import 'package:flutter/material.dart';
-import 'admin_page.dart'; // Import the AdminPage
-import 'user_page.dart'; // Import the UserPage
+import 'package:app_inventaris/views/home_page.dart';
+import 'package:flutter/material.dart'; // Import the AdminPage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,12 +31,12 @@ class _LoginPageState extends State<LoginPage> {
       if (email == 'admin@example.com' && password == 'admin123') {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const AdminPage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       } else if (email == 'user@example.com' && password == 'user123') {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => UserPage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       } else {
         _showErrorToast('Email atau password salah');
