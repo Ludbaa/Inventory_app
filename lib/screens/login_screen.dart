@@ -14,8 +14,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void login() {
-    final user = authService.login(
+  void login() async {
+    final user = await authService.login(
       emailController.text,
       passwordController.text,
     );
@@ -33,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // Dispose of the controllers when the widget is removed from the widget tree
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -44,8 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Login'),
-        backgroundColor: Colors.blueAccent,
+        title: Text('Inventory App'),
+        backgroundColor: Colors.blueAccent, // Warna AppBar
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -60,7 +59,15 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.lock, size: 64.0, color: Colors.blueAccent),
+                  SizedBox(height: 20), // Space before title
+                  Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent, // Warna teks Login
+                    ),
+                  ),
                   SizedBox(height: 20),
                   TextField(
                     controller: emailController,
@@ -87,14 +94,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      iconColor: Colors.blueAccent,
+                      backgroundColor: Colors
+                          .blueAccent, // Ganti primary dengan backgroundColor
+                      iconColor: Colors.white,
                       padding: EdgeInsets.symmetric(horizontal: 32.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
                     onPressed: login,
-                    child: Text('Login'),
+                    child: Text('Login', style: TextStyle(color: Colors.white)),
                   ),
                   SizedBox(height: 16),
                   TextButton(
@@ -105,7 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             builder: (context) => RegisterScreen()),
                       );
                     },
-                    child: Text('Register'),
+                    child: Text('Register',
+                        style: TextStyle(color: Colors.blueAccent)),
                   ),
                   TextButton(
                     onPressed: () {
@@ -115,7 +125,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             builder: (context) => ForgotPasswordScreen()),
                       );
                     },
-                    child: Text('Forgot Password?'),
+                    child: Text('Forgot Password?',
+                        style: TextStyle(color: Colors.blueAccent)),
                   ),
                 ],
               ),
